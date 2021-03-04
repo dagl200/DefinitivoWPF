@@ -35,8 +35,8 @@ namespace DefinitivoWPF
         public Socket sock;
         public  BackgroundWorker MessageReceiver = new BackgroundWorker();
          
-        private TcpListener server = null;
-        private TcpClient client;
+        public TcpListener server = null;
+        public TcpClient client;
         
         
         public MainWindow()
@@ -45,17 +45,28 @@ namespace DefinitivoWPF
             MessageReceiver.DoWork += MessageReceiver_DoWork;
             
         }
+
         public void MessageReceiver_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (Validacion())
-                return;
+
+            Validacion();
             FreezeBoard();
             ReceiveMove();
+            UnfreezeBoard();
             
-            if (!Validacion())
-                UnfreezeBoard();
+
+            
         }
-        private void FreezeBoard()
+        public void salvame()
+        {
+            Validacion();
+            FreezeBoard();
+            ReceiveMove();
+            UnfreezeBoard();
+            
+        }
+
+        public void FreezeBoard()
         {
             TopLeftButn.IsEnabled = false;
             TopRightButn.IsEnabled = false;
@@ -68,7 +79,7 @@ namespace DefinitivoWPF
             LowRightButn.IsEnabled = false;
         }
 
-        private void UnfreezeBoard()
+        public void UnfreezeBoard()
         {
             if ((string)TopLeftButn.Content == "") TopLeftButn.IsEnabled = true;
             if ((string)TopMidButn.Content == "") TopMidButn.IsEnabled = true;
@@ -82,7 +93,7 @@ namespace DefinitivoWPF
 
         }
 
-        private void ResetBoard() 
+        public void ResetBoard() 
         {
             TopLeftButn.Content ="";
             TopRightButn.Content ="";
@@ -96,8 +107,9 @@ namespace DefinitivoWPF
             UnfreezeBoard();
         }
 
-        private void ReceiveMove()
+        public void ReceiveMove()
         {
+            
             byte[] buffer = new byte[1];
             sock.Receive(buffer);
             if (buffer[0] == 1)
@@ -441,7 +453,7 @@ namespace DefinitivoWPF
                 byte[] num = { 1 };
                 sock.Send(num);
                 TopLeftButn.Content = PlayerChar;
-                
+                salvame();
                 MessageReceiver.RunWorkerAsync();
             }
             
@@ -471,6 +483,8 @@ namespace DefinitivoWPF
                 byte[] num = { 2 };
                 sock.Send(num);
                 TopMidButn.Content = PlayerChar;
+                salvame();
+
                 MessageReceiver.RunWorkerAsync();
             }
 
@@ -499,6 +513,8 @@ namespace DefinitivoWPF
                 byte[] num = { 3 };
                 sock.Send(num);
                 TopRightButn.Content = PlayerChar;
+                salvame();
+
                 MessageReceiver.RunWorkerAsync();
             }
 
@@ -530,6 +546,8 @@ namespace DefinitivoWPF
                 sock.Send(num);
                 MidLeftButn.Content = PlayerChar;
                 MessageReceiver.RunWorkerAsync();
+                salvame();
+
             }
 
         }
@@ -556,6 +574,8 @@ namespace DefinitivoWPF
                 byte[] num = { 5 };
                 sock.Send(num);
                 MidMidButn.Content = PlayerChar;
+                salvame();
+
                 MessageReceiver.RunWorkerAsync();
             }
         }
@@ -582,6 +602,8 @@ namespace DefinitivoWPF
                 byte[] num = { 6 };
                 sock.Send(num);
                 MidRightButn.Content = PlayerChar;
+                salvame();
+
                 MessageReceiver.RunWorkerAsync();
             }
         }
@@ -608,6 +630,8 @@ namespace DefinitivoWPF
                 byte[] num = { 7 };
                 sock.Send(num);
                 LowLeftButn.Content = PlayerChar;
+                salvame();
+
                 MessageReceiver.RunWorkerAsync();
             }
         }
@@ -638,13 +662,16 @@ namespace DefinitivoWPF
                 PlayerChar = "X";
                 OpponentChar = "O";
                 server = new TcpListener(System.Net.IPAddress.Any, 5732);
+                
                 server.Start();
                 sock = server.AcceptSocket();
+                
             }
             else
             {
                 PlayerChar = "O";
                 OpponentChar = "X";
+                ;
                 try
                 {
                     client = new TcpClient(ip, 5732);
@@ -697,6 +724,8 @@ namespace DefinitivoWPF
                 sock.Send(num);
                 LowMidButn.Content = PlayerChar;
                 MessageReceiver.RunWorkerAsync();
+                salvame();
+
             }
         }
 
@@ -722,6 +751,8 @@ namespace DefinitivoWPF
                 byte[] num = { 9 };
                 sock.Send(num);
                 LowRightButn.Content = PlayerChar;
+                salvame();
+
                 MessageReceiver.RunWorkerAsync();
             }
         }
