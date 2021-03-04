@@ -13,5 +13,15 @@ namespace DefinitivoWPF
     /// </summary>
     public partial class App : Application
     {
+        public bool multi = false;
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            
+        }
+
+        public void Application_Exit(object sender, ExitEventArgs e)
+        {
+            
+        }
     }
 }

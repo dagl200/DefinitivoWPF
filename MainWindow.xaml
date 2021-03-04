@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DefinitivoWPF"
         mc:Ignorable="d"
-                 Title="TicTacToe" Height="550" Width="510">
+                 Title="TicTacToe" Height="550" Width="525">
     <Canvas Background="LightBlue" Margin="0"  >
         <Button x:Name="TopLeftButn" Canvas.Left="0" Canvas.Top="0" Height="166" Width="133" Content="" FontSize="100" Click="TopLeftButn_Click" BorderBrush="Black" BorderThickness="1" />
         <Button x:Name="TopMidButn" Canvas.Left="133" Canvas.Top="0" Height="166" Width="133" Content="" FontSize="100" Click="TopMidButn_Click" BorderBrush="Black" BorderThickness="1" />
@@ -16,6 +16,11 @@
         <Button x:Name="LowLeftButn" Canvas.Left="0" Canvas.Top="332" Height="166" Width="133" Content="" FontSize="100" Click="LowLeftButn_Click" BorderBrush="Black" BorderThickness="1" />
         <Button x:Name="LowMidButn" Canvas.Left="133" Canvas.Top="332" Height="166" Width="133" Content="" FontSize="100" Click="LowMidButn_Click" BorderBrush="Black" BorderThickness="1" />
         <Button x:Name="LowRightButn" Canvas.Left="266" Canvas.Top="332" Height="166" Width="133" Content="" FontSize="100" Click="LowRightButn_Click" BorderBrush="Black" BorderThickness="1" />
+        <RadioButton Content="Multiplayer" Canvas.Left="404" Canvas.Top="43" Height="24" Width="106" FontSize="15" Click="RadioButton_Click"/>
+        <RadioButton Content="Singleplayer" Canvas.Left="404" Canvas.Top="83" Height="24" Width="106" FontSize="15" Click="RadioButton_Click_1"/>
+        <RadioButton Content="Reset Board" Canvas.Left="404" Canvas.Top="163" Height="24" Width="106" FontSize="15" Click="RadioButton_Click_2" RenderTransformOrigin="0.508,0.141"/>
+        <RadioButton Content="Beta" Canvas.Left="404" Canvas.Top="123" Height="24" Width="106" FontSize="15" Click="RadioButton_Click_3"/>
+        <RadioButton Content="Exit" Canvas.Left="404" Canvas.Top="203" Height="24" Width="106" FontSize="15" Click="RadioButton_Click_4"/>
 
     </Canvas>
 
