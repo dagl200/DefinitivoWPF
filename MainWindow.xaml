@@ -21,6 +21,7 @@
         <RadioButton Content="Reset Board" Canvas.Left="404" Canvas.Top="163" Height="24" Width="106" FontSize="15" Click="RadioButton_Click_2" RenderTransformOrigin="0.508,0.141"/>
         <RadioButton Content="Beta" Canvas.Left="404" Canvas.Top="123" Height="24" Width="106" FontSize="15" Click="RadioButton_Click_3"/>
         <RadioButton Content="Exit" Canvas.Left="404" Canvas.Top="203" Height="24" Width="106" FontSize="15" Click="RadioButton_Click_4"/>
+        <RadioButton Content="Refresh" Canvas.Left="404" Canvas.Top="243" Height="24" Width="106" FontSize="15" Click="RadioButton_Click_5"></RadioButton>
 
     </Canvas>
 
